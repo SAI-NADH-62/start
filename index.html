@@ -1,130 +1,95 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CyberHawks XSS CTF</title>
   <style>
-    /* Reset & body styling */
+    /* Full viewport & reset */
     html, body {
       height: 100%;
       margin: 0;
-      background: #000; /* pure black */
-      font-family: 'Orbitron', 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, monospace;
+      background: #000;
+      font-family: 'Inter', sans-serif;
       color: #fff;
+      overflow: hidden; /* Remove scroll */
       display: flex;
-      flex-direction: column;
-    }
-
-    /* Header */
-    header {
-      width: 100%;
-      padding: 12px 24px;
-      text-align: center;
-      background: rgba(255,255,255,0.02);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-      font-weight: bold;
-      font-size: 1.3rem;
-      letter-spacing: 1px;
-    }
-
-    /* Main content wrapper */
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
-      gap: 30px;
+      align-items: center;
+    }
+
+    /* Container for content */
+    .container {
       text-align: center;
+      max-width: 900px;
+      padding: 20px;
     }
 
-    /* Bug logo styling */
+    /* Logo */
     .logo {
-      width: 150px;
-      height: 150px;
-      object-fit: contain;
-      filter: drop-shadow(0 0 12px #1e90ff);
-      animation: float 3s ease-in-out infinite;
+      width: 200px;
+      height: auto;
+      margin-bottom: 40px;
+      filter: drop-shadow(0 0 20px #1e90ff);
     }
 
-    /* Floating animation */
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    /* Title text */
+    /* Main title text */
     .title {
-      font-size: clamp(36px, 8vw, 120px);
-      font-weight: 900;
-      letter-spacing: 3px;
-      user-select: none;
-      text-shadow: 0 0 20px #1e90ff, 0 0 40px #0077ff;
+      font-size: 2rem; /* smaller than before */
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: 30px;
+      color: #1e90ff;
     }
 
+    /* Link styling */
     .link {
       color: #1e90ff;
       text-decoration: none;
-      font-size: 1.1rem;
-      margin-top: 20px;
+      font-size: 1rem;
+      border-bottom: 1px dashed #1e90ff;
       transition: color 0.3s ease;
     }
-
     .link:hover {
       color: #00bfff;
-      text-shadow: 0 0 10px #00bfff;
+      border-bottom: 1px solid #00bfff;
     }
 
-    /* Footer */
+    /* Footer styling */
     footer {
+      position: absolute;
+      bottom: 10px;
       width: 100%;
-      padding: 12px 24px;
-      background: rgba(255,255,255,0.02);
-      box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
       text-align: center;
-      font-size: 0.875rem;
+      font-size: 0.75rem;
+      color: #aaa;
     }
-
-    footer .footer-links {
-      margin-top: 6px;
-    }
-
-    footer .footer-links a {
+    footer a {
       color: #1e90ff;
-      margin: 0 8px;
       text-decoration: none;
-      transition: color 0.3s ease;
+      margin: 0 8px;
     }
-
-    footer .footer-links a:hover {
+    footer a:hover {
       color: #00bfff;
     }
   </style>
-
-  <!-- Orbitron font for futuristic look -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <header>
-    CyberHawks XSS CTF
-  </header>
+  <div class="container">
+    <!-- Big club logo -->
+    <img src="club-logo.png" alt="CyberHawks Club Logo" class="logo">
 
-  <main>
-    <!-- Bug logo -->
-    <img src="assets/club-logo.png" alt="Bug Logo" class="logo" />
-    
-    <!-- Main text -->
+    <!-- Smaller main title -->
     <div class="title">N0tH!nG HeRE.......!</div>
-    
+
     <!-- Optional link -->
     <a href="https://linktr.ee/CyberHawksClub_GNITHYD" class="link" target="_blank">Visit CyberHawks Club</a>
-  </main>
+  </div>
 
   <footer>
-    <small>Made for learning • Do not reuse in production</small>
-    <div class="footer-links">
+    Made for learning • Do not reuse in production
+    <div>
       <a href="https://linktr.ee/CyberHawksClub_GNITHYD" target="_blank">CyberHawksClub</a>
       <a href="https://www.linkedin.com/in/k-sai-nadh/" target="_blank">MyLinkedin</a>
     </div>

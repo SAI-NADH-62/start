@@ -1,0 +1,19 @@
+# Robots file - not a secure storage, only hints for the curious
+User-agent: *
+Allow: /flag_9xRANDOMx2.html
+
+Disallow: /secret-rainbow-7a1.html
+Disallow: /secret-echo-2f9.html
+Disallow: /hidden-path-alpha-582.html
+Disallow: /0xdeadbeef-portal.html
+Disallow: /0xCAF3-bunker.html
+Disallow: /0xghost-door-c47.html.....
+Disallow: /0xFA1L-safe.html
+Disallow: /svc-backdoor-0x11.html
+Disallow: /flag_final_stage.html ....
+Disallow: /0xBEEF-cache.html
+Disallow: /shellcode-0x77.html
+Disallow: /final-0xFLAG.html
+Disallow: /crypto-0x7e.html
+
+# If you're reading this, Great way to Go.....!👻🫣

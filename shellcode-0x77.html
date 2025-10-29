@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Binary Hall - Stage 3</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <meta name="description" content="Partial flag hidden among code clutter.">
+  <style>
+    body { margin:0; overflow-x:hidden; }
+    .site-header {
+      background: rgba(0,0,0,0.85);
+      color: #fff;
+      padding: 15px 25px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    }
+    .header-inner { display:flex; justify-content:space-between; align-items:center; max-width:1200px; margin:0 auto; }
+    .brand strong { font-size:1.4rem; letter-spacing:1px; }
+    .tag { font-size:0.85rem; color:#aaa; }
+    .club-logo img { width:55px; height:55px; object-fit:contain; margin-right:20px; }
+    .site-footer { background: rgba(0,0,0,0.85); color:#aaa; text-align:center; padding:15px 0; font-size:0.95rem; }
+    .footer-links a { color:#1e90ff; text-decoration:none; margin:0 8px; transition:color 0.3s; }
+    .footer-links a:hover { color:#00bfff; }
+    .container { min-height: calc(100vh - 140px); display:flex; align-items:center; justify-content:center; padding:28px; }
+    .card { width:100%; max-width:980px; background: linear-gradient(180deg, rgba(10,14,20,0.55), rgba(8,12,16,0.48)); border-radius:12px; padding:20px; border:1px solid rgba(0,200,255,0.04); box-shadow:0 20px 50px rgba(0,0,0,0.6); }
+    .site-title { font-weight:700; color:#9fbfdc; margin-bottom:8px; }
+    .hint { color: rgba(230,245,255,0.85); margin-bottom:12px; }
+    pre.code-block { background: rgba(255,255,255,0.03); color:#00ff00; padding:18px; border-radius:8px; font-family:monospace; overflow-x:auto; font-size:0.9rem; box-shadow:0 0 15px rgba(0,255,0,0.06); }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <strong>CyberHawks CTF</strong>
+        <div class="tag">practice • learning • safe</div>
+      </div>
+      <div class="club-logo">
+        <img src="assets/club-logo.png" alt="Club Logo" />
+      </div>
+    </div>
+  </header>
+
+  <main class="container" role="main">
+    <div class="card" role="region" aria-label="final-stage">
+      <div class="site-title">Binary Hall — Stage 3</div>
+      <p class="hint">Stage 3: Only the last fragment is here. The candidate pool is stored in the page source (not shown in the UI). View source (Ctrl+U) and decode candidates to find the true ending.</p>
+
+<pre class="code-block">
+// === system diagnostic trace (noisy, intentionally misleading) ===
+/* boot sequence */
+init_hw();                  // initialize hardware
+sleep_ms(12);
+check_entropy();
+if (!boot_ok()) {
+  dump_core("0x7ffdeadbeef");
+  // corrupted sector? -> ignore
+}
+
+/* runtime watchers */
+for (int t = 0; t < 5; ++t) {
+  profiler_tick();
+  log_debugf("tick=%d, rng=%08x", t, rng_seed());
+  // fake trace strings to confuse scanners
+  trace_hex(0xA1B2C3D4);
+  /* pretend to load module */
+  load_module("net_core_v2");
+}
+
+/* faux crypto helpers (decoy) */
+static const char *k1 = "cafebabe";
+static const char *k2 = "0xDEADBEEF";
+char buffer[512];
+memset(buffer, 0x00, sizeof(buffer));
+strncpy(buffer, "INIT::OK", 8);
+
+/* noisy pseudo code, JS-style function fragments to mix languages */
+function scramble(n) {
+  // pseudo-workload to bulk up source
+  for (var i = 0; i < n; ++i) {
+    // produce meaningless operations
+    var x = ((i * 31) ^ (i >> 2)) + 0x1337;
+    if (x % 17 === 0) { noop(x); }
+  }
+  return true;
+}
+
+
+/* more noise - simulated log dump */
+for (int i = 0; i < sizeof(candidates)/sizeof(*candidates); ++i) {
+  fprintf(stderr, "pool[%d]=%s\n", i, candidates[i]);
+  // intentionally do NOT decode or print decoded value
+}
+
+/* decoy multi-line block — lots of hex & base64 looking tokens */
+//
+// 0xAFFE 0x00DD 0xC0DE 7a6c5a3d== eyJkYXRhIjoiZmFrZSJ9
+// 0x1337 0xBEEF [VGhpc0lzQW5vQmFzZTY0] QWxhZGRpbjpPcGVuU2VzYW1l
+// random: R2V0QmFzZTY0 RnJlZQ== OXV0aWxz
+}
+}
+      <p class="hint">Hint: search for the array named "candidates" and base64-decode each entry.
+   <br>Only one decoded word is the correct ending (the other decoded words are decoys).
+</p>
+    </div>
+  </main>
+
+  <!--
+    ---------- CANDIDATE FRAGMENT POOL (BASE64) ----------
+    NOTE: This entire block is an HTML comment. It is included so players
+    can find the candidate base64 strings only when they view the page source.
+    There is NO front-end rendering of these strings.
+
+    const char *candidates[] = {
+      "X1VubG9jazAh",      
+      "X0hpZGRlbl0=",      
+      "X0ZpbmFsUH0=",     
+      "X05vdFJpZ2h0fQ==",  
+      "X0Zha2VFbmR9",      
+      "X1VubDBjazNkfQ=="   
+    };
+
+    FINAL-PAYLOAD: the correct base64 is one of the entries above.
+    Decode each candidate to find which one yields the real last-word fragment.
+  -->
+
+  <!-- Also include immutable JSON blob (hidden) so it's visible in source/DOM but not rendered -->
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner" style="max-width:1200px; margin:0 auto; padding:12px 20px; display:flex; justify-content:space-between; align-items:center;">
+      <small>Made for learning • Do not reuse in production</small>
+      <div class="footer-links">
+        <a href="https://linktr.ee/CyberHawksClub_GNITHYD" target="_blank" rel="noopener">CyberHawksClub</a>
+        <a href="https://www.linkedin.com/in/k-sai-nadh/" target="_blank" rel="noopener">MyLinkedin</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

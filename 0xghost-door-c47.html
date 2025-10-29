@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ghost Door - Stage 2</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <meta name="description" content="Select text to reveal hidden fragment.">
+  <style>
+    /* Prevent unwanted scroll */
+    body {
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    .site-header {
+      background: rgba(0, 0, 0, 0.85);
+      color: #fff;
+      padding: 15px 25px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .brand strong {
+      font-size: 1.4rem;
+      letter-spacing: 1px;
+    }
+
+    .tag {
+      font-size: 0.85rem;
+      color: #aaa;
+    }
+
+    .club-logo img {
+      width: 55px;
+      height: 55px;
+      object-fit: contain;
+      margin-right: 20px; /* gives it some breathing room */
+    }
+
+    .site-footer {
+      background: rgba(0,0,0,0.85);
+      color: #aaa;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 0.95rem;
+    }
+
+    .footer-links a {
+      color: #1e90ff;
+      text-decoration: none;
+      margin: 0 8px;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: #00bfff;
+    }
+
+    /* Keep reveal-on-select behavior intact */
+    .reveal-on-select {
+      color: transparent;
+      user-select: text;
+    }
+
+    .reveal-on-select::selection {
+      color: #00ffff;
+      background: transparent;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <strong>CyberHawks CTF</strong>
+        <div class="tag">practice • learning • safe</div>
+      </div>
+
+      <div class="club-logo">
+        <img src="assets/club-logo.png" alt="Club Logo" />
+      </div>
+    </div>
+  </header>
+
+  <main class="container" role="main" aria-labelledby="s2">
+    <div class="card" role="region" aria-label="stage-two">
+      <div class="site-title">Ghost Door — Selection Required</div>
+
+      <p id="s2" class="hint">Stage 2: The fragment is invisible until you <strong>select</strong> it (try click+drag or Ctrl+A). The UI makes it silent — no flicker.</p>
+
+      <!-- Invisible text revealed only when selected -->
+      <p class="reveal-on-select" tabindex="0" aria-label="select-to-reveal">_Th3_Hidd3n_</p>
+
+      <div class="hint" style="margin-top:10px">Tip: select the text to reveal the fragment. Use keyboard or mouse selection.</div>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <small>Made for learning • Do not reuse in production</small>
+      <div class="footer-links">
+        <a href="https://linktr.ee/CyberHawksClub_GNITHYD" target="_blank" rel="noopener">CyberHawksClub</a>
+        <a href="https://www.linkedin.com/in/k-sai-nadh/" target="_blank" rel="noopener">MyLinkedin</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

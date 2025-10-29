@@ -7,10 +7,10 @@ Disallow: /secret-echo-2f9.html
 Disallow: /hidden-path-alpha-582.html
 Disallow: /0xdeadbeef-portal.html
 Disallow: /0xCAF3-bunker.html
-Disallow: /0xghost-door-c47.html.....
+Disallow: /0xghost-door-c47.html
 Disallow: /0xFA1L-safe.html
 Disallow: /svc-backdoor-0x11.html
-Disallow: /flag_final_stage.html ....
+Disallow: /flag_final_stage.html
 Disallow: /0xBEEF-cache.html
 Disallow: /shellcode-0x77.html
 Disallow: /final-0xFLAG.html
